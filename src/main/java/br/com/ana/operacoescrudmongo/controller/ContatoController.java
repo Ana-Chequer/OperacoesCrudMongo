@@ -80,11 +80,12 @@ public class ContatoController {
 
 		Optional<Contato> contatoCadastrado = contatoRepository.findById(contatoId);
 
-		logger.info("contatoId " + contatoId);
-		logger.info("nome proposto " + contato.getNome());
-		logger.info("nome original " + contatoCadastrado.get().getNome());
-
 		if (contatoCadastrado.isPresent()) {
+			
+			logger.info("contatoId " + contatoId);
+			logger.info("nome proposto " + contato.getNome());
+			logger.info("nome original " + contatoCadastrado.get().getNome());
+
 			BeanUtils.copyProperties(contato, contatoCadastrado.get(), "id");
 			logger.info("nome alterado " + contatoCadastrado.get().getNome());
 			Contato contatoAtualizado = contatoService.atualizar(contatoCadastrado.get());
